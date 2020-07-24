@@ -95,4 +95,58 @@ update()
 +/-/*//
 ```
 
+## 13. itemgetter
 
+```Python
+from operator import itemgetter
+
+rows_by_fname = sorted(rows, key = itemgetter('fname')) 
+rows_by_uid = sorted(rows, key = itemgetter('uid'))
+rows_by_lfname = sorted(rows, key = itemgetter('lname','fname'))
+```
+
+比lambda快。
+
+适用min，max。
+
+## 14. 对不支持原生比较的元素排序
+
+sorted()函数可接受一个用来传递可调用对象(callable)的参数key。
+
+lambda、attrgetter, 后者更快，可同时提取多个字段值。
+
+## 15. 根据字段为记录分组（groupby）
+
+```Python
+itertools.groupby()
+```
+
+groupby()创建一个迭代器，每次迭代会返回一个值(value)和一个子迭代器
+
+利用defaultdict创建一键多值字典，不需要排序，会更快。
+
+## 16. 筛选元素
+
+1. 列表推导式
+2. 生成器表达式迭代
+3. filter()处理复杂条件
+4. compress()筛选满足True的元素
+
+## 17. 字典中提取子集
+
+1. 字典推导式 速度快
+
+## 18. 名称映射到序列元素中
+
+1. `collections.namedtuple()` 工厂方法，范围标准元组子类。
+2. 替代字典，但namedtuple不可变，用`_replace()`实现修改属性
+
+## 19. 同时做数据转换
+
+1. 生成器表达式作为函数的单独参数
+  
+## 20. 多个映射合并为单个映射
+
+1. ChainMap
+2. 修改映射的操作总是会作用在列出的第一个映射结构上。
+3. 结合带有作用域的值特别有用
